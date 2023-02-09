@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 
-class DNSPriceParser():
+class DNSParser():
 
     @dataclass
     class ProductData():
@@ -108,7 +108,6 @@ class DNSPriceParser():
 
     def parseDNSUrlCatalog(self, url : str, pages : int) -> None:
         self._driver.get(url)
-        time.sleep(1.2)
         productsCount = self._productsInCategory()
         progressBar = tqdm(total=productsCount)
         badCycleCount = 0
@@ -130,8 +129,8 @@ class DNSPriceParser():
 
 
 if __name__ == '__main__':
-    parser = DNSPriceParser(parsingTags=['name', 'price', 'availability'])
-    url = 'https://www.dns-shop.ru/catalog/17a9e6e016404e77/vytyazhki/'
+    parser = DNSParser(parsingTags=['name', 'price', 'availability'])
+    url = 'https://www.dns-shop.ru/catalog/17a899cd16404e77/processory/?order=6'
     #parser.authorizationDNS("******, "******")
     parser.parseDNSUrlCatalog(url, pages=999)
     parser.exportData('paneliDns')
