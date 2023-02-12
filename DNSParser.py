@@ -46,7 +46,7 @@ class DNSParser():
     _tagsExtractorsDictionary = {
         Tag.title: TagExtractor('product name', lambda data: data.find('a', attrs={"class": "catalog-product__name ui-link ui-link_black"}).find('span').get_text(), extractingFrom=ExtractingPlaces.catalog),
         Tag.price: TagExtractor('product price', lambda data: data.find('div', attrs={"class": "product-buy__price"}).get_text().split('₽')[0]+'₽', extractingFrom=ExtractingPlaces.catalog),
-        Tag.availability: TagExtractor('product available', lambda data: "Нет в наличии" if data.find('div', attrs={"class": "order-avail-wrap_not-avail"}) else "В наличии", extractingFrom=ExtractingPlaces.catalog),
+        Tag.availability: TagExtractor('product available', lambda data: data.find('div', attrs={"class": "order-avail-wrap"}).get_text().strip(), extractingFrom=ExtractingPlaces.catalog),
         Tag.productLink: TagExtractor('link on product', lambda data: data.find('a', attrs={"class": "catalog-product__name"}).get('href'), extractingFrom=ExtractingPlaces.catalog),
         Tag.description: TagExtractor('product description', lambda data: data.find('div', attrs={"class": "product-card-description-text"}).get_text(), extractingFrom=ExtractingPlaces.productPage)
     }
@@ -56,15 +56,17 @@ class DNSParser():
     DNS_LOGIN_PAGE = 'https://www.dns-shop.ru/profile/menu/'
 
     def __init__(self, parsingTags : List[Tag] = [Tag.title, Tag.price, Tag.availability]):
-        self._parsingExportTags = parsingTags
-        self._parsingTags = parsingTags
+        self._parsingExportTags = parsingTags.copy()
+        self._parsingTags = parsingTags.copy()
         self._parsedProducts : List[self.ProductData] = []
         self._extractFromPrPg = False
         self._verifyTags()
         options = webdriver.ChromeOptions()
         options.add_argument('log-level=3')
+        options.add_argument("--start-maximized")
+        options.add_experimental_option("excludeSwitches", ["enable-automation"])
+        options.add_experimental_option('useAutomationExtension', False)
         self._driver = webdriver.Chrome(options=options)
-        self._driver.maximize_window()
     
     def _verifyTags(self):
         for tag in self._parsingTags:
@@ -174,12 +176,12 @@ class DNSParser():
         with open(csvFilePath, 'w', encoding='utf8') as exportFile:
             for ind, tag in enumerate(self._parsingExportTags):
                 exportFile.write(tag.value)
-                exportFile.write(',' if ind != len(self._parsingTags)-1 else '')
+                exportFile.write(',' if ind != len(self._parsingExportTags)-1 else '')
             exportFile.write('\n')
             for product in self._parsedProducts:
                 for ind, productTag in enumerate(self._parsingExportTags):
                     exportFile.write(f'"{getattr(product, productTag.value)}"')
-                    exportFile.write("," if ind != len(self._parsingTags)-1 else "")
+                    exportFile.write("," if ind != len(self._parsingExportTags)-1 else "")
                 exportFile.write('\n')
         print(f"Data sucessfuly exported to {csvFilePath}")
 
