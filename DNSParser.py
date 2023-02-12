@@ -2,9 +2,7 @@ import time
 from dataclasses import dataclass
 from typing import Callable, Optional, List
 from enum import Enum
-from threading import Thread
 
-import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from tqdm import tqdm
@@ -63,10 +61,10 @@ class DNSParser():
         self._verifyTags()
         options = webdriver.ChromeOptions()
         options.add_argument('log-level=3')
-        options.add_argument("--start-maximized")
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option('useAutomationExtension', False)
         self._driver = webdriver.Chrome(options=options)
+        self._driver.maximize_window()
     
     def _verifyTags(self):
         for tag in self._parsingTags:
@@ -106,6 +104,9 @@ class DNSParser():
                 product.description = self._applyTagExtractor(soup, tag)
         return product
 
+    def _productsInCategory(self):
+        return int(self._driver.find_element(By.CLASS_NAME, "products-count").text.split()[0])
+
     def _clickPageLink(self):
         try:
             nextPageLink = self._driver.find_element(By.CLASS_NAME, 'pagination-widget__page-link_next')
@@ -116,8 +117,16 @@ class DNSParser():
         nextPageLink.click()
         return True
     
+    def _removeDuplicatesList(self, list):
+        newList = []
+        for elem in list:
+            if elem not in newList:
+                newList.append(elem)
+        return newList
+
     def _extractCatalogs(self, url : str, pages : int, products : List[ProductData] = []) -> List[ProductData]:
         self._driver.get(url)
+        time.sleep(0.1)
         productsCount = self._productsInCategory()
         print(f"\tExtracting catalogs...")
         progressBar = tqdm(total=productsCount)
@@ -137,36 +146,61 @@ class DNSParser():
             if not nextPageReady:
                 pages = 0
         progressBar.close()
-        return products
+        return self._removeDuplicatesList(products)
 
+    def _isProductParsedByPlace(self, product : ProductData, place : ExtractingPlaces) -> bool:
+        for tag in self._parsingTags:
+            field = getattr(product, tag.value)
+            if field == "" and self._getTagExtractor(tag).extractingFrom == place:
+                return False
+        return True
+            
     def _extractPrPages(self, products : List[ProductData]) -> List[ProductData]:
         print(f"\tExtracting product pages...")
+
+        class LoadNext():
+            def __init__(self, remainProductsCnt, progressBar):
+                self.badCycleCount = 0
+                self.currentProductNumber = 0
+                self.remainProductsCnt = remainProductsCnt
+                self.progressBar = progressBar
+                self._chunkLoadCount = 10
+                self._currentChunk = 0
+            
+            def moveToNextProduct(self):
+                self._currentChunk += 1
+                if self._chunkLoadCount == self._currentChunk:
+                    time.sleep(2)
+                    self._currentChunk = 0
+                self.badCycleCount = 0
+                self.currentProductNumber += 1
+                self.remainProductsCnt -= 1
+                self.progressBar.update(1)
+            
         remainProductsCnt = len(products)
         currentProductNumber = 0
-        badCycleCount = 0
         progressBar = tqdm(total=remainProductsCnt)
         product = products[currentProductNumber]
         self._driver.get(self.DNS_MAIN_PAGE+product.productLink)
 
-        while remainProductsCnt:
-            if badCycleCount == 0 or badCycleCount >= self.RETRY_ATTEMPTS:
-                product = products[currentProductNumber]
+        loader = LoadNext(remainProductsCnt, progressBar)
+
+        while loader.remainProductsCnt:
+            if loader.badCycleCount == 0 or loader.badCycleCount >= self.RETRY_ATTEMPTS:
+                product = products[loader.currentProductNumber]
+                if self._isProductParsedByPlace(product, ExtractingPlaces.productPage):
+                    loader.moveToNextProduct()
+                    continue
                 self._driver.get(self.DNS_MAIN_PAGE+product.productLink)
-            time.sleep(0.2)
+            time.sleep(0.35)
             try:
                 product = self._extractPrPageViaSoup(self._driver.page_source, product)
             except:
-                badCycleCount += 1
+                loader.badCycleCount += 1
                 continue
-            badCycleCount = 0
-            currentProductNumber += 1
-            remainProductsCnt -= 1
-            progressBar.update(1)
+            loader.moveToNextProduct()
         progressBar.close()
         return products
-
-    def _productsInCategory(self):
-        return int(self._driver.find_element(By.CLASS_NAME, "products-count").text.split()[0])
 
     def exportData(self, filePath : str) -> None:
         print(f"Start data export")
