@@ -14,8 +14,11 @@ class Tag(Enum):
     availability = 'availability'
     productLink = 'productLink'
     description = 'description'
+    serviceRating = 'serviceRating'
+    specifications = 'specifications'
+    reviewsCount = 'reviewsCount'
 
-class ExtractingPlaces(Enum):
+class ExtractingPlace(Enum):
     none = 0
     catalog = 1
     productPage = 2
@@ -29,6 +32,9 @@ class DNSParser():
         availability : str = ""
         productLink : str = ""
         description : str = ""
+        serviceRating : str = ""
+        specifications : str = ""
+        reviewsCount : str = ""
         def __repr__(self):
             return f'"{self.name}",{self.price}'
         def __str__(self):
@@ -39,16 +45,22 @@ class DNSParser():
         name : str 
         extFunc : Callable[[str], str]
         description : Optional[str] = 'empty'
-        extractingFrom : ExtractingPlaces = ExtractingPlaces.none
+        extractingFrom : ExtractingPlace = ExtractingPlace.none
+        default : Optional[str] = 'Not found'
 
     _tagsExtractorsDictionary = {
-        Tag.title: TagExtractor('product name', lambda data: data.find('a', attrs={"class": "catalog-product__name ui-link ui-link_black"}).find('span').get_text(), extractingFrom=ExtractingPlaces.catalog),
-        Tag.price: TagExtractor('product price', lambda data: data.find('div', attrs={"class": "product-buy__price"}).get_text().split('₽')[0]+'₽', extractingFrom=ExtractingPlaces.catalog),
-        Tag.availability: TagExtractor('product available', lambda data: data.find('div', attrs={"class": "order-avail-wrap"}).get_text().strip(), extractingFrom=ExtractingPlaces.catalog),
-        Tag.productLink: TagExtractor('link on product', lambda data: data.find('a', attrs={"class": "catalog-product__name"}).get('href'), extractingFrom=ExtractingPlaces.catalog),
-        Tag.description: TagExtractor('product description', lambda data: data.find('div', attrs={"class": "product-card-description-text"}).get_text(), extractingFrom=ExtractingPlaces.productPage)
+        Tag.title: TagExtractor('name', lambda data: data.find('a', attrs={"class": "catalog-product__name ui-link ui-link_black"}).find('span').get_text(), extractingFrom=ExtractingPlace.catalog),
+        Tag.price: TagExtractor('price', lambda data: data.find('div', attrs={"class": "product-buy__price"}).get_text().split('₽')[0]+'₽', extractingFrom=ExtractingPlace.catalog),
+        Tag.availability: TagExtractor('product availability', lambda data: data.find('div', attrs={"class": "order-avail-wrap"}).get_text().strip(), extractingFrom=ExtractingPlace.catalog),
+        Tag.productLink: TagExtractor('link on product', lambda data: data.find('a', attrs={"class": "catalog-product__name"}).get('href'), extractingFrom=ExtractingPlace.catalog),
+        Tag.serviceRating: TagExtractor('product service rating', lambda data: data.find('a', attrs={"class": "catalog-product__service-rating"}).get_text() + "%", extractingFrom=ExtractingPlace.catalog),
+        Tag.reviewsCount: TagExtractor('number of reviews', lambda data: data.find('a', {"class": "catalog-product__rating"}).get_text(), extractingFrom=ExtractingPlace.catalog),
+
+        Tag.description: TagExtractor('product description', lambda data: data.find('div', attrs={"class": "product-card-description-text"}).get_text(), extractingFrom=ExtractingPlace.productPage),
+        Tag.specifications: TagExtractor('product specifications', lambda data: data.find('div', attrs={"class": "product-characteristics"}).get_text(), extractingFrom=ExtractingPlace.productPage)
     }
 
+    LOW_PRIORITY_TAGS = [Tag.serviceRating, Tag.reviewsCount, Tag.specifications]
     RETRY_ATTEMPTS = 5
     DNS_MAIN_PAGE = 'https://www.dns-shop.ru'
     DNS_LOGIN_PAGE = 'https://www.dns-shop.ru/profile/menu/'
@@ -68,7 +80,7 @@ class DNSParser():
     
     def _verifyTags(self):
         for tag in self._parsingTags:
-            if self._getTagExtractor(tag).extractingFrom == ExtractingPlaces.productPage and not self._extractFromPrPg: 
+            if self._getTagExtractor(tag).extractingFrom == ExtractingPlace.productPage and not self._extractFromPrPg: 
                 self._extractFromPrPg = True
                 if Tag.productLink not in self._parsingTags:
                     self._parsingTags.append(Tag.productLink)
@@ -79,7 +91,12 @@ class DNSParser():
     
     def _applyTagExtractor(self, data : str, tag : Tag) -> str:
         tagExtractor = self._tagsExtractorsDictionary[tag]
-        return tagExtractor.extFunc(data)
+        try:
+            return tagExtractor.extFunc(data)
+        except:
+            if tag in self.LOW_PRIORITY_TAGS:
+                return tagExtractor.default
+            raise Exception(f"Couldn't exctract tag {tag.value}")
     
     def _getTagExtractor(self, tag : Tag) -> TagExtractor:
         return self._tagsExtractorsDictionary[tag]
@@ -91,7 +108,7 @@ class DNSParser():
         for product in products:
             productData = self.ProductData()
             for tag in self._parsingTags:
-                if self._getTagExtractor(tag).extractingFrom == ExtractingPlaces.catalog:
+                if self._getTagExtractor(tag).extractingFrom == ExtractingPlace.catalog:
                     tagData = self._applyTagExtractor(product, tag)
                     setattr(productData, tag.value, tagData)
             productsData.append(productData)
@@ -100,8 +117,8 @@ class DNSParser():
     def _extractPrPageViaSoup(self, pageSource : str, product : ProductData = ProductData()) -> List[ProductData]:
         soup = BeautifulSoup(pageSource, "html.parser")
         for tag in self._parsingTags:
-            if self._getTagExtractor(tag).extractingFrom == ExtractingPlaces.productPage:
-                product.description = self._applyTagExtractor(soup, tag)
+            if self._getTagExtractor(tag).extractingFrom == ExtractingPlace.productPage:
+                setattr(product, tag.value, self._applyTagExtractor(soup, tag))
         return product
 
     def _productsInCategory(self):
@@ -131,13 +148,17 @@ class DNSParser():
         print(f"\tExtracting catalogs...")
         progressBar = tqdm(total=productsCount)
         badCycleCount = 0
-        while pages and badCycleCount <= self.RETRY_ATTEMPTS:
+        while pages:
             time.sleep(0.6)
             try:
                 productsData = self._extractCatalogViaSoup(self._driver.page_source)
                 nextPageReady = self._clickPageLink()
             except:
                 badCycleCount += 1
+                if badCycleCount > self.RETRY_ATTEMPTS:
+                    if not self._clickPageLink():
+                        print(f"Reached max attemps count")
+                        pages = 0
                 continue
             products += productsData
             progressBar.update(len(productsData))
@@ -148,7 +169,7 @@ class DNSParser():
         progressBar.close()
         return self._removeDuplicatesList(products)
 
-    def _isProductParsedByPlace(self, product : ProductData, place : ExtractingPlaces) -> bool:
+    def _isProductParsedByPlace(self, product : ProductData, place : ExtractingPlace) -> bool:
         for tag in self._parsingTags:
             field = getattr(product, tag.value)
             if field == "" and self._getTagExtractor(tag).extractingFrom == place:
@@ -188,7 +209,7 @@ class DNSParser():
         while loader.remainProductsCnt:
             if loader.badCycleCount == 0 or loader.badCycleCount >= self.RETRY_ATTEMPTS:
                 product = products[loader.currentProductNumber]
-                if self._isProductParsedByPlace(product, ExtractingPlaces.productPage):
+                if self._isProductParsedByPlace(product, ExtractingPlace.productPage):
                     loader.moveToNextProduct()
                     continue
                 self._driver.get(self.DNS_MAIN_PAGE+product.productLink)
@@ -209,7 +230,7 @@ class DNSParser():
             csvFilePath += '.csv'
         with open(csvFilePath, 'w', encoding='utf8') as exportFile:
             for ind, tag in enumerate(self._parsingExportTags):
-                exportFile.write(tag.value)
+                exportFile.write(self._tagsExtractorsDictionary[tag].name)
                 exportFile.write(',' if ind != len(self._parsingExportTags)-1 else '')
             exportFile.write('\n')
             for product in self._parsedProducts:
