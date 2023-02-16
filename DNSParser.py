@@ -86,7 +86,6 @@ class DNSParser():
                     self._parsingTags.append(Tag.productLink)
 
     def __del__(self):
-        self._driver.close()
         self._driver.quit()
     
     def _applyTagExtractor(self, data : str, tag : Tag) -> str:
@@ -127,11 +126,11 @@ class DNSParser():
     def _clickPageLink(self):
         try:
             nextPageLink = self._driver.find_element(By.CLASS_NAME, 'pagination-widget__page-link_next')
+            nextPageLink.click()
         except:
             return False
         if "pagination-widget__page-link_disabled" in nextPageLink.get_attribute('class'):
             return False
-        nextPageLink.click()
         return True
     
     def _removeDuplicatesList(self, list):
@@ -157,8 +156,9 @@ class DNSParser():
                 badCycleCount += 1
                 if badCycleCount > self.RETRY_ATTEMPTS:
                     if not self._clickPageLink():
-                        print(f"Reached max attemps count")
+                        print(f"\nReached max attemps count")
                         pages = 0
+                        break
                 continue
             products += productsData
             progressBar.update(len(productsData))
@@ -243,15 +243,11 @@ class DNSParser():
     def authorizationDNS(self, login : str, password : str) -> None:
         self._driver.get(self.DNS_LOGIN_PAGE)
         time.sleep(0.5)
-        loginButton = self._driver.find_element(By.CLASS_NAME, "user-page__login-btn")
-        loginButton.click()
-        loginWithPassBtn = self._driver.find_element(By.CLASS_NAME, "block-other-login-methods__password-caption")
-        loginWithPassBtn.click()
+        loginButton = self._driver.find_element(By.CLASS_NAME, "user-page__login-btn").click()
+        loginWithPassBtn = self._driver.find_element(By.CLASS_NAME, "block-other-login-methods__password-caption").click()
         time.sleep(0.2)
-        loginInputField = self._driver.find_element(By.CLASS_NAME, "form-entry-with-password__input").find_element(By.TAG_NAME, 'input')
-        loginInputField.send_keys(login)
-        passwordInputField = self._driver.find_element(By.CLASS_NAME, "form-entry-with-password__password").find_element(By.TAG_NAME, 'input')
-        passwordInputField.send_keys(password)
+        loginInputField = self._driver.find_element(By.CLASS_NAME, "form-entry-with-password__input").find_element(By.TAG_NAME, 'input').send_keys(login)
+        passwordInputField = self._driver.find_element(By.CLASS_NAME, "form-entry-with-password__password").find_element(By.TAG_NAME, 'input').send_keys(password)
         submitButton = self._driver.find_element(By.CLASS_NAME, "form-entry-with-password__main-button").find_element(By.TAG_NAME, "button")
         time.sleep(0.2)
         submitButton.click()
@@ -262,3 +258,22 @@ class DNSParser():
 
         if self._extractFromPrPg:
             self._parsedProducts = self._extractPrPages(self._parsedProducts)
+
+
+
+# def get_page
+
+# def get pagination
+
+# def get_content_page
+#     wait_to_load_element('html')
+#     time.sleep(0.2)
+#     get_element('price')
+#     if price:
+#         asdfgasg
+#         asdhasdhasdhsadg
+#     else:
+#         reload
+# def create_csv_file
+
+# def write_csv_file
