@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="page_title">Parse DNS catalog via link</h1>
+    <!-- <div class="form_container"> -->
+        <form method="post" class="form_holder" action="/dnsparser/1/">
+            <br>
+            <input class="text-field__input" type="text" name="url"
+                placeholder="URL"
+                value="{{ request.form['url'] }}"></input>
+            <br>
+
+            <button class="text-field__btn">Submit</button>
+        </form>
+    <!-- </div> -->
+    <form action="/dnsparser/2/" method="post">
+        <input type="submit" value="Download" />
+    </form>
+{% endblock %}

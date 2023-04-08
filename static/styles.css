@@ -1,0 +1,43 @@
+
+h1.navtitle {
+    text-align: center;
+    font-size: 36px;
+}
+
+h1.page_title {
+    text-align: center;
+    font-size: 32px;
+}
+
+
+
+
+.form_holder {
+    width:60%;
+    display: flex;
+    border-radius: 0.25rem;
+    border: 1px solid #bdbdbd;
+    margin-right: 5px;
+}
+
+
+.text-field__btn {
+    display: block;
+    text-align: center;
+    width: 20%;
+}
+
+.text-field__input {
+    display: flex;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}

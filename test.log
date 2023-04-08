@@ -1,0 +1,38 @@
+2
+<class 'str'>
+<class 'str'>
+da
+False
+2
+False
+2
+True
+2
+True
+name,price,availability
+Процессор Intel Core i5-12400F OEM [LGA 1700, 6 x 2.5 ГГц, L2 - 7.5 МБ, L3 - 18 МБ, 2хDDR4, DDR5-4800 МГц, TDP 117 Вт],14 399 ₽,В наличии
+Процессор AMD Ryzen 5 5600X OEM [AM4, 6 x 3.7 ГГц, L2 - 3 МБ, L3 - 32 МБ, 2хDDR4-3200 МГц, TDP 65 Вт],14 499 ₽,В наличии
+Процессор Intel Core i5-12400 OEM [LGA 1700, 6 x 2.5 ГГц, L2 - 7.5 МБ, L3 - 18 МБ, 2хDDR4, DDR5-4800 МГц, Intel UHD Graphics 730, TDP 117 Вт],15 499 ₽,В наличии
+Процессор Intel Core i5-11400F OEM [LGA 1200, 6 x 2.6 ГГц, L2 - 3 МБ, L3 - 12 МБ, 2хDDR4-3200 МГц, TDP 65 Вт],10 999 ₽,В наличии
+Процессор Intel Core i3-12100F OEM [LGA 1700, 4 x 3.3 ГГц, L2 - 5 МБ, L3 - 12 МБ, 2хDDR4, DDR5-4800 МГц, TDP 89 Вт],8 499 ₽,В наличии
+Процессор AMD Ryzen 5 3600 OEM [AM4, 6 x 3.6 ГГц, L2 - 3 МБ, L3 - 32 МБ, 2хDDR4-3200 МГц, TDP 65 Вт],9 799 ₽,В наличии
+Процессор AMD Ryzen 5 5600X BOX [AM4, 6 x 3.7 ГГц, L2 - 3 МБ, L3 - 32 МБ, 2хDDR4-3200 МГц, TDP 65 Вт, кулер],15 499 ₽,В наличии
+Процессор AMD Ryzen 5 5600G OEM [AM4, 6 x 3.9 ГГц, L2 - 3 МБ, L3 - 16 МБ, 2хDDR4-3200 МГц, AMD Radeon Vega 7, TDP 65 Вт],11 999 ₽,В наличии
+Процессор Intel Core i5-12400F BOX [LGA 1700, 6 x 2.5 ГГц, L2 - 7.5 МБ, L3 - 18 МБ, 2хDDR4, DDR5-4800 МГц, TDP 117 Вт, кулер],14 999 ₽,В наличии
+Процессор Intel Core i5-12400F BOX [LGA 1700, 6 x 2.5 ГГц, L2 - 7.5 МБ, L3 - 18 МБ, 2хDDR4, DDR5-4800 МГц, TDP 117 Вт, кулер],14 999 ₽,В наличии
+Процессор Intel Core i5-10400F OEM [LGA 1200, 6 x 2.9 ГГц, L2 - 1.5 МБ, L3 - 12 МБ, 2хDDR4-2666 МГц, TDP 65 Вт],9 999 ₽,В наличии
+Процессор Intel Core i3-10105F OEM [LGA 1200, 4 x 3.7 ГГц, L2 - 1 МБ, L3 - 6 МБ, 2хDDR4-2666 МГц, TDP 65 Вт],5 699 ₽,В наличии
+Процессор AMD Ryzen 7 5800X OEM [AM4, 8 x 3.8 ГГц, L2 - 4 МБ, L3 - 32 МБ, 2хDDR4-3200 МГц, TDP 105 Вт],21 999 ₽,В наличии
+Процессор Intel Core i7-12700 OEM [LGA 1700, 8P x 2.1 ГГц, 4E x 1.6 ГГц, L2 - 12 МБ, L3 - 25 МБ, 2хDDR4, DDR5-4800 МГц, Intel UHD Graphics 770, TDP 180 Вт],26 899 ₽,В наличии
+Процессор AMD Ryzen 7 5700X OEM [AM4, 8 x 3.4 ГГц, L2 - 4 МБ, L3 - 32 МБ, 2хDDR4-3200 МГц, TDP 65 Вт],18 799 ₽,В наличии
+Процессор Intel Core i3-10105 BOX [LGA 1200, 4 x 3.7 ГГц, L2 - 1 МБ, L3 - 6 МБ, 2хDDR4-2666 МГц, Intel UHD Graphics 630, TDP 65 Вт, кулер],8 899 ₽,В наличии
+Процессор AMD Ryzen 7 5800X3D OEM [AM4, 8 x 3.4 ГГц, L2 - 4 МБ, L3 - 96 МБ, 2хDDR4-3200 МГц, TDP 105 Вт],32 799 ₽,В наличии
+Процессор Intel Core i7-13700K OEM [LGA 1700, 8P x 3.4 ГГц, 8E x 2.5 ГГц, L2 - 24 МБ, L3 - 30 МБ, 2хDDR4, DDR5-5600 МГц, Intel UHD Graphics 770, TDP 253 Вт],39 799 ₽,В наличии
+
+1
+
+1
+https://www.dns-shop.ru/catalog/17a899cd16404e77/processory/?order=6&stock=now-today-tomorrow-later-out_of_stock
+Created instance of parser
+parsed url: https://www.dns-shop.ru/catalog/17a899cd16404e77/processory/?order=6&stock=now-today-tomorrow-later-out_of_stock
+exported to file

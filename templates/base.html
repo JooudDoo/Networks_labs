@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %} - FlaskApp</title>
+
+    {% block styles %}
+    <link rel="stylesheet"  type="text/css" href="{{url_for('static', filename='styles.css')}}">
+    {% endblock %}
+
+</head>
+<body>
+    <nav>
+        <h1 class="navtitle">Dns parser</h1>
+    </nav>
+    <hr>
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
+</body>
+</html>
