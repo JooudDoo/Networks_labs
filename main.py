@@ -5,6 +5,7 @@ from typing import Callable, Optional, List
 import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.service import Service as FXService
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 
@@ -37,9 +38,17 @@ class DNSParser():
     def __init__(self, parsingTags : List[str] = ['name', 'price', 'availability']):
         self._parsingTags = parsingTags
         self._parsedProducts : list[self.ProductData] = []
-        options = webdriver.ChromeOptions()
+        options = webdriver.FirefoxOptions()
+        options.binary_location = "/usr/bin/firefox-esr"
         options.add_argument('log-level=3')
-        self._driver = webdriver.Chrome(options=options)
+        options.add_argument('--headless')
+        options.add_argument('user-agent=fake-useragent')
+        options.add_argument("--disable-blink-features=AutomationControlled")
+        options.add_argument("--window-size=1920,1080")
+        options.add_argument('--start-maximized')
+        options.add_argument('--no-sandbox')
+
+        self._driver = webdriver.Firefox(options=options, service=FXService("/usr/bin/geckodriver"))
         self._driver.maximize_window()
     
     def __del__(self):
@@ -108,6 +117,9 @@ class DNSParser():
 
     def parseDNSUrlCatalog(self, url : str, pages : int) -> None:
         self._driver.get(url)
+        time.sleep(5)
+        with open("html.html", 'w', encoding='utf8') as f:
+            f.write(self._driver.page_source)
         productsCount = self._productsInCategory()
         progressBar = tqdm(total=productsCount)
         badCycleCount = 0
