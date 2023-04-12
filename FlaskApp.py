@@ -39,7 +39,7 @@ def parse_link():
     url = request.form['link']
 
     if not url:
-        return jsonify({'status': 'succes'})
+        return jsonify({'status': 'wrong'})
 
     if not parserThreadStarted:
         parserThreadStarted = True
