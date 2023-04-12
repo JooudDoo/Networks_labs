@@ -1,19 +1,87 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1 class="page_title">Parse DNS catalog via link</h1>
-    <!-- <div class="form_container"> -->
-        <form method="post" class="form_holder" action="/dnsparser/1/">
-            <br>
-            <input class="text-field__input" type="text" name="url"
-                placeholder="URL"
-                value="{{ request.form['url'] }}"></input>
-            <br>
 
-            <button class="text-field__btn">Submit</button>
-        </form>
-    <!-- </div> -->
-    <form action="/dnsparser/2/" method="post">
-        <input type="submit" value="Download" />
+<div class="container">
+    <h1>Спарсить каталог DNS</h1>
+
+    <form id="myform" action="dnsparser/parse" method="POST">
+        <label for="link-input">Введите ссылку:</label>
+        <input class="form-link_input" type="text" id="link-input" name="link">
+        <button class="form-submit_button" type="submit" id="submit-button">Отправить</button>
     </form>
+    <div class="loading-indicator" id="form-loading_indicator">
+        <div class="loader"></div>
+        <p>Парсинг...</p>
+    </div>
+    
+    <div class="download-button" id="form-download_btn_container">
+        <form action="/dnsparser/2/" method="post">
+            <button type="submit" value="Download">Download</button>
+        </form>
+    </div>
+
+</div>
+
+<script>
+
+const urlform = document.querySelector('#myform');
+const loadingIndicator = document.getElementById('form-loading_indicator');
+const parserResultContainer = document.getElementById('form-download_btn_container');
+
+urlform.addEventListener('submit', (event) => {
+	event.preventDefault();
+
+	loadingIndicator.style.display = 'block';
+
+    interVal = setInterval(() => {
+        console.log("Working")
+        fetch('/dnsparser/parse', {
+            method: 'POST',
+            body: new FormData(urlform)
+        })
+        .then(response => response.json())
+        .then(status => {
+            if(status['status'] == 'succes'){
+                loadingIndicator.style.display = 'none';
+                parserResultContainer.style.display = 'flex';
+                clearInterval(interVal);
+            }
+            else if(status['status'] == 'wrong'){
+                loadingIndicator.style.display = 'none';
+                clearInterval(interVal);
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+        }, 3000);
+});
+
+</script>
+
+<!-- <div class="block">
+    <form method="post" class="form_holder" action="/dnsparser/1/">
+
+        <div class="text-field">
+            <div class="container-bordered">
+                <input class="text-field__input" type="text" name="url" placeholder="URL" id="url"
+                    value="{{ request.form['url'] }}" />
+                <button class="text-field__btn">Submit</button>
+            </div>
+
+        </div>
+
+    </form>
+
+    <div class="block-download">
+        <form action="/dnsparser/2/" method="post">
+            <div class="text-field">
+                <button class="text-download_btn" type="submit" value="Download">Download</button>
+            </div>
+        </form>
+    </div>
+
+</div> -->
+
 {% endblock %}

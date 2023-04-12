@@ -1,22 +1,75 @@
-1680971649463	geckodriver	INFO	Listening on 127.0.0.1:50967
-1680971650003	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ox" "--remote-debugging-port" "39419" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileNdmKyp"
+1681317046675	geckodriver	INFO	Listening on 127.0.0.1:59523
+1681317047180	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ox" "--remote-debugging-port" "55125" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileHjEzne"
 *** You are running in headless mode.
 [GFX1-]: glxtest: Unable to open a connection to the X server
 [GFX1-]: glxtest: libEGL initialize failed
-1680971652045	Marionette	INFO	Marionette enabled
-1680971652052	Marionette	INFO	Listening on port 37865
-WebDriver BiDi listening on ws://localhost:39419
-Read port: 37865
-1680971652340	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1681317047471	Marionette	INFO	Marionette enabled
+1681317047475	Marionette	INFO	Listening on port 43807
+WebDriver BiDi listening on ws://localhost:55125
+Read port: 43807
+1681317047633	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
 [GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
-console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileNdmKyp/search.json.mozlz4", (void 0)))
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileHjEzne/search.json.mozlz4", (void 0)))
+1681317049676	geckodriver	INFO	Listening on 127.0.0.1:39145
 Missing chrome or resource URL: resource://gre/modules/UpdateListener.jsm
 Missing chrome or resource URL: resource://gre/modules/UpdateListener.sys.mjs
-DevTools listening on ws://localhost:39419/devtools/browser/63fdfbfd-3206-4f6f-92a0-fa8a41e49a78
-1680971672796	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
-1680971676449	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
-1680971677019	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
-1680971677293	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+DevTools listening on ws://localhost:55125/devtools/browser/4f847b68-6cca-4434-bf20-afe4bc3c44f5
+1681317050179	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ox" "--remote-debugging-port" "54295" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile72ISDJ"
+*** You are running in headless mode.
+[GFX1-]: glxtest: Unable to open a connection to the X server
+[GFX1-]: glxtest: libEGL initialize failed
+1681317050541	Marionette	INFO	Marionette enabled
+1681317050545	Marionette	INFO	Listening on port 33361
+WebDriver BiDi listening on ws://localhost:54295
+Read port: 33361
+1681317050726	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile72ISDJ/search.json.mozlz4", (void 0)))
+Missing chrome or resource URL: resource://gre/modules/UpdateListener.jsm
+Missing chrome or resource URL: resource://gre/modules/UpdateListener.sys.mjs
+DevTools listening on ws://localhost:54295/devtools/browser/6855b3ef-db2d-4795-be45-3d7509f2cb23
+1681317061677	geckodriver	INFO	Listening on 127.0.0.1:40497
+1681317061680	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ox" "--remote-debugging-port" "46877" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilezF3bPp"
+*** You are running in headless mode.
+[GFX1-]: glxtest: Unable to open a connection to the X server
+[GFX1-]: glxtest: libEGL initialize failed
+1681317062021	Marionette	INFO	Marionette enabled
+1681317062026	Marionette	INFO	Listening on port 42557
+WebDriver BiDi listening on ws://localhost:46877
+Read port: 42557
+1681317062169	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilezF3bPp/search.json.mozlz4", (void 0)))
+Missing chrome or resource URL: resource://gre/modules/UpdateListener.jsm
+Missing chrome or resource URL: resource://gre/modules/UpdateListener.sys.mjs
+DevTools listening on ws://localhost:46877/devtools/browser/7ddd9d52-b3c8-46b1-ad77-c50f8da2b0cd
+1681317075012	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1681317082730	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1681317082874	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1681317083146	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: WebGL warning: <Create>: WebglAllowWindowsNativeGl:false restricts context creation on this system.
+JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: Failed to create WebGL context: WebGL creation failed: 
+* WebglAllowWindowsNativeGl:false restricts context creation on this system. ()
+* Exhausted GL driver options. (FEATURE_FAILURE_WEBGL_EXHAUSTED_DRIVERS)
+JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: WebGL warning: <Create>: WebglAllowWindowsNativeGl:false restricts context creation on this system.
+JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: Failed to create WebGL context: WebGL creation failed: 
+* WebglAllowWindowsNativeGl:false restricts context creation on this system. ()
+* Exhausted GL driver options. (FEATURE_FAILURE_WEBGL_EXHAUSTED_DRIVERS)
+1681317092937	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1681317104350	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript warning: https://as.dns-shop.ru/static/04/14xs5kr/header-full-vue.js, line 0: Successfully compiled asm.js code (total compilation time 65ms)
+1681317106907	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1681317107936	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1681317112435	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1681317118869	Marionette	INFO	Stopped listening on port 43807
+Missing chrome or resource URL: resource://gre/modules/UpdateListener.jsm
+Missing chrome or resource URL: resource://gre/modules/UpdateListener.sys.mjs
+console.error: "Error during quit-application-granted: [Exception... \"File error: Not found\"  nsresult: \"0x80520012 (NS_ERROR_FILE_NOT_FOUND)\"  location: \"JS frame :: resource:///modules/BrowserGlue.jsm :: _onQuitApplicationGranted/tasks< :: line 1996\"  data: no]"
+JavaScript warning: https://as.dns-shop.ru/static/04/14xs5kr/header-full-vue.js, line 0: Successfully compiled asm.js code (total compilation time 152ms)
+1681317122662	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+JavaScript error: https://www.dns-shop.ru/catalog/17a899cd16404e77/processory/?order=6, line 218: TypeError: window.initCatalogRsuSwitch is not a function
+1681317123412	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1681317124304	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
 JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: WebGL warning: <Create>: WebglAllowWindowsNativeGl:false restricts context creation on this system.
 JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: Failed to create WebGL context: WebGL creation failed: 
 * WebglAllowWindowsNativeGl:false restricts context creation on this system. ()
@@ -26,119 +79,12 @@ JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: Failed to cre
 * WebglAllowWindowsNativeGl:false restricts context creation on this system. ()
 * Exhausted GL driver options. (FEATURE_FAILURE_WEBGL_EXHAUSTED_DRIVERS)
 JavaScript warning: https://as.dns-shop.ru/static/04/14xs5kr/header-full-vue.js, line 0: Successfully compiled asm.js code (total compilation time 0ms)
-1680971692156	Marionette	INFO	Stopped listening on port 37865
+JavaScript error: https://www.dns-shop.ru/catalog/17a899cd16404e77/processory/?order=6, line 218: TypeError: window.initCatalogRsuSwitch is not a function
+1681317157187	Marionette	INFO	Stopped listening on port 42557
 Missing chrome or resource URL: resource://gre/modules/UpdateListener.jsm
 Missing chrome or resource URL: resource://gre/modules/UpdateListener.sys.mjs
 console.error: "Error during quit-application-granted: [Exception... \"File error: Not found\"  nsresult: \"0x80520012 (NS_ERROR_FILE_NOT_FOUND)\"  location: \"JS frame :: resource:///modules/BrowserGlue.jsm :: _onQuitApplicationGranted/tasks< :: line 1996\"  data: no]"
-1680972067165	geckodriver	INFO	Listening on 127.0.0.1:38089
-1680972067170	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ox" "--remote-debugging-port" "34389" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilexoXFRQ"
-*** You are running in headless mode.
-[GFX1-]: glxtest: Unable to open a connection to the X server
-[GFX1-]: glxtest: libEGL initialize failed
-1680972067510	Marionette	INFO	Marionette enabled
-1680972067514	Marionette	INFO	Listening on port 42253
-WebDriver BiDi listening on ws://localhost:34389
-Read port: 42253
-1680972067635	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
-[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
-console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilexoXFRQ/search.json.mozlz4", (void 0)))
-Missing chrome or resource URL: resource://gre/modules/UpdateListener.jsm
-Missing chrome or resource URL: resource://gre/modules/UpdateListener.sys.mjs
-DevTools listening on ws://localhost:34389/devtools/browser/fa9c1c41-d620-4e43-b895-14f102d3d367
-1680972083695	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
-JavaScript warning: https://as.dns-shop.ru/static/04/14xs5kr/header-full-vue.js, line 0: Successfully compiled asm.js code (total compilation time 0ms)
-1680972091465	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
-1680972092515	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
-1680972093389	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
-JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: WebGL warning: <Create>: WebglAllowWindowsNativeGl:false restricts context creation on this system.
-JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: Failed to create WebGL context: WebGL creation failed: 
-* WebglAllowWindowsNativeGl:false restricts context creation on this system. ()
-* Exhausted GL driver options. (FEATURE_FAILURE_WEBGL_EXHAUSTED_DRIVERS)
-JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: WebGL warning: <Create>: WebglAllowWindowsNativeGl:false restricts context creation on this system.
-JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: Failed to create WebGL context: WebGL creation failed: 
-* WebglAllowWindowsNativeGl:false restricts context creation on this system. ()
-* Exhausted GL driver options. (FEATURE_FAILURE_WEBGL_EXHAUSTED_DRIVERS)
-1680972100449	Marionette	INFO	Stopped listening on port 42253
-Missing chrome or resource URL: resource://gre/modules/UpdateListener.jsm
-Missing chrome or resource URL: resource://gre/modules/UpdateListener.sys.mjs
-console.error: "Error during quit-application-granted: [Exception... \"File error: Not found\"  nsresult: \"0x80520012 (NS_ERROR_FILE_NOT_FOUND)\"  location: \"JS frame :: resource:///modules/BrowserGlue.jsm :: _onQuitApplicationGranted/tasks< :: line 1996\"  data: no]"
-1680972113835	geckodriver	INFO	Listening on 127.0.0.1:54315
-1680972113908	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ox" "--remote-debugging-port" "50289" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilegJt4ZU"
-*** You are running in headless mode.
-[GFX1-]: glxtest: Unable to open a connection to the X server
-[GFX1-]: glxtest: libEGL initialize failed
-1680972114679	Marionette	INFO	Marionette enabled
-1680972114683	Marionette	INFO	Listening on port 35115
-WebDriver BiDi listening on ws://localhost:50289
-Read port: 35115
-1680972114864	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
-[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
-console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilegJt4ZU/search.json.mozlz4", (void 0)))
-Missing chrome or resource URL: resource://gre/modules/UpdateListener.jsm
-Missing chrome or resource URL: resource://gre/modules/UpdateListener.sys.mjs
-DevTools listening on ws://localhost:50289/devtools/browser/12a3c926-b5ef-4caf-8123-32015314dfe4
-1680972133619	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
-1680972138560	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
-1680972138687	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
-1680972138976	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
-JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: WebGL warning: <Create>: WebglAllowWindowsNativeGl:false restricts context creation on this system.
-JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: Failed to create WebGL context: WebGL creation failed: 
-* WebglAllowWindowsNativeGl:false restricts context creation on this system. ()
-* Exhausted GL driver options. (FEATURE_FAILURE_WEBGL_EXHAUSTED_DRIVERS)
-JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: WebGL warning: <Create>: WebglAllowWindowsNativeGl:false restricts context creation on this system.
-JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: Failed to create WebGL context: WebGL creation failed: 
-* WebglAllowWindowsNativeGl:false restricts context creation on this system. ()
-* Exhausted GL driver options. (FEATURE_FAILURE_WEBGL_EXHAUSTED_DRIVERS)
-JavaScript warning: https://as.dns-shop.ru/static/04/14xs5kr/header-full-vue.js, line 0: Successfully compiled asm.js code (total compilation time 1ms)
-JavaScript warning: https://as.dns-shop.ru/static/04/13yuyaw/register-user-action.js, line 1: WebGL warning: <Create>: WebglAllowWindowsNativeGl:false restricts context creation on this system.
-JavaScript warning: https://as.dns-shop.ru/static/04/13yuyaw/register-user-action.js, line 1: Failed to create WebGL context: WebGL creation failed: 
-* WebglAllowWindowsNativeGl:false restricts context creation on this system. ()
-* Exhausted GL driver options. (FEATURE_FAILURE_WEBGL_EXHAUSTED_DRIVERS)
-JavaScript warning: https://as.dns-shop.ru/static/04/13yuyaw/register-user-action.js, line 1: WebGL warning: <Create>: WebglAllowWindowsNativeGl:false restricts context creation on this system.
-JavaScript warning: https://as.dns-shop.ru/static/04/13yuyaw/register-user-action.js, line 1: Failed to create WebGL context: WebGL creation failed: 
-* WebglAllowWindowsNativeGl:false restricts context creation on this system. ()
-* Exhausted GL driver options. (FEATURE_FAILURE_WEBGL_EXHAUSTED_DRIVERS)
-JavaScript warning: https://as.dns-shop.ru/static/04/13yuyaw/register-user-action.js, line 1: WebGL warning: <Create>: WebglAllowWindowsNativeGl:false restricts context creation on this system.
-JavaScript warning: https://as.dns-shop.ru/static/04/13yuyaw/register-user-action.js, line 1: Failed to create WebGL context: WebGL creation failed: 
-* WebglAllowWindowsNativeGl:false restricts context creation on this system. ()
-* Exhausted GL driver options. (FEATURE_FAILURE_WEBGL_EXHAUSTED_DRIVERS)
-JavaScript warning: https://as.dns-shop.ru/static/04/13yuyaw/register-user-action.js, line 1: WebGL warning: <Create>: WebglAllowWindowsNativeGl:false restricts context creation on this system.
-JavaScript warning: https://as.dns-shop.ru/static/04/13yuyaw/register-user-action.js, line 1: Failed to create WebGL context: WebGL creation failed: 
-* WebglAllowWindowsNativeGl:false restricts context creation on this system. ()
-* Exhausted GL driver options. (FEATURE_FAILURE_WEBGL_EXHAUSTED_DRIVERS)
-1680972147767	Marionette	INFO	Stopped listening on port 35115
-Missing chrome or resource URL: resource://gre/modules/UpdateListener.jsm
-Missing chrome or resource URL: resource://gre/modules/UpdateListener.sys.mjs
-console.error: "Error during quit-application-granted: [Exception... \"File error: Not found\"  nsresult: \"0x80520012 (NS_ERROR_FILE_NOT_FOUND)\"  location: \"JS frame :: resource:///modules/BrowserGlue.jsm :: _onQuitApplicationGranted/tasks< :: line 1996\"  data: no]"
-1680973106707	geckodriver	INFO	Listening on 127.0.0.1:46245
-1680973106736	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr ... ox" "--remote-debugging-port" "56221" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileYdHG50"
-*** You are running in headless mode.
-[GFX1-]: glxtest: Unable to open a connection to the X server
-[GFX1-]: glxtest: libEGL initialize failed
-1680973107417	Marionette	INFO	Marionette enabled
-1680973107422	Marionette	INFO	Listening on port 39791
-WebDriver BiDi listening on ws://localhost:56221
-Read port: 39791
-1680973107606	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
-[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
-console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileYdHG50/search.json.mozlz4", (void 0)))
-Missing chrome or resource URL: resource://gre/modules/UpdateListener.jsm
-Missing chrome or resource URL: resource://gre/modules/UpdateListener.sys.mjs
-DevTools listening on ws://localhost:56221/devtools/browser/a7c8089b-a88f-45c8-9c14-617e007f72ac
-1680973127644	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
-1680973131623	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
-1680973131632	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
-1680973131830	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
-JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: WebGL warning: <Create>: WebglAllowWindowsNativeGl:false restricts context creation on this system.
-JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: Failed to create WebGL context: WebGL creation failed: 
-* WebglAllowWindowsNativeGl:false restricts context creation on this system. ()
-* Exhausted GL driver options. (FEATURE_FAILURE_WEBGL_EXHAUSTED_DRIVERS)
-JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: WebGL warning: <Create>: WebglAllowWindowsNativeGl:false restricts context creation on this system.
-JavaScript warning: https://mc.yandex.ru/metrika/tag.js, line 163: Failed to create WebGL context: WebGL creation failed: 
-* WebglAllowWindowsNativeGl:false restricts context creation on this system. ()
-* Exhausted GL driver options. (FEATURE_FAILURE_WEBGL_EXHAUSTED_DRIVERS)
-JavaScript warning: https://as.dns-shop.ru/static/04/14xs5kr/header-full-vue.js, line 0: Successfully compiled asm.js code (total compilation time 0ms)
-1680973144484	Marionette	INFO	Stopped listening on port 39791
+1681317170666	Marionette	INFO	Stopped listening on port 33361
 Missing chrome or resource URL: resource://gre/modules/UpdateListener.jsm
 Missing chrome or resource URL: resource://gre/modules/UpdateListener.sys.mjs
 console.error: "Error during quit-application-granted: [Exception... \"File error: Not found\"  nsresult: \"0x80520012 (NS_ERROR_FILE_NOT_FOUND)\"  location: \"JS frame :: resource:///modules/BrowserGlue.jsm :: _onQuitApplicationGranted/tasks< :: line 1996\"  data: no]"

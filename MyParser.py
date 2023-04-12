@@ -2,10 +2,10 @@ import time
 from dataclasses import dataclass
 from typing import Callable, Optional, List
 
+import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service as FXService
-from selenium.webdriver.firefox.options import Options
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 
@@ -48,7 +48,7 @@ class DNSParser():
         options.add_argument('--start-maximized')
         options.add_argument('--no-sandbox')
 
-        self._driver = webdriver.Firefox(options=options, executable_path='/usr/bin/geckodriver')
+        self._driver = webdriver.Firefox(options=options, service=FXService("/usr/bin/geckodriver"))
         self._driver.maximize_window()
     
     def __del__(self):
@@ -115,33 +115,31 @@ class DNSParser():
         submitButton.click()
         time.sleep(0.4)
 
-    def parseDNSUrlCatalog(self, url : str, pages : int) -> None:
+    def parseDNSUrlCatalog(self, url : str, pages : int = 1) -> None:
         self._driver.get(url)
         productsCount = self._productsInCategory()
-        progressBar = tqdm(total=productsCount)
+        # progressBar = tqdm(total=productsCount)
         badCycleCount = 0
-        while pages and badCycleCount <= 5:
+        while pages != 0 and badCycleCount <= 5:
             time.sleep(0.6)
             try:
                 productsData = self._extractViaSoup(self._driver.page_source)
-                nextPageReady = self._clickPageLink()
+                # nextPageReady = self._clickPageLink()
             except:
                 badCycleCount += 1
                 continue
             self._parsedProducts += productsData
-            progressBar.update(len(productsData))
+            # progressBar.update(len(productsData))
             pages -= 1
             badCycleCount = 0
-            if not nextPageReady:
-                pages = 0
-        progressBar.close()
+        # progressBar.close()
 
 
 if __name__ == '__main__':
     parser = DNSParser(parsingTags=['name', 'price', 'availability'])
     url = 'https://www.dns-shop.ru/catalog/17a899cd16404e77/processory/?order=6'
     #parser.authorizationDNS("******, "******")
-    parser.parseDNSUrlCatalog(url, pages=999)
+    parser.parseDNSUrlCatalog(url, pages=1)
     parser.exportData('paneliDns')
     del parser
 
