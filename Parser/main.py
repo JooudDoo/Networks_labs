@@ -2,12 +2,12 @@ import time
 from dataclasses import dataclass
 from typing import Callable, Optional, List
 
-import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service as FXService
 from tqdm import tqdm
 from bs4 import BeautifulSoup
+
 
 class DNSParser():
 
@@ -38,17 +38,24 @@ class DNSParser():
     def __init__(self, parsingTags : List[str] = ['name', 'price', 'availability']):
         self._parsingTags = parsingTags
         self._parsedProducts : list[self.ProductData] = []
-        options = webdriver.FirefoxOptions()
-        options.binary_location = "/usr/bin/firefox-esr"
+        options = webdriver.ChromeOptions()
+        # options.binary_location = "/usr/bin/firefox-esr"
         options.add_argument('log-level=3')
-        options.add_argument('--headless')
+        # options.add_argument('--headless')
         options.add_argument('user-agent=fake-useragent')
         options.add_argument("--disable-blink-features=AutomationControlled")
         options.add_argument("--window-size=1920,1080")
         options.add_argument('--start-maximized')
         options.add_argument('--no-sandbox')
 
-        self._driver = webdriver.Firefox(options=options, service=FXService("/usr/bin/geckodriver"))
+        self._driver = webdriver.Chrome(options=options)
+        self._driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+            'source': '''
+                delete window.cdc_adoQpoasnfa76pfcZLmcfl_Array;
+                delete window.cdc_adoQpoasnfa76pfcZLmcfl_Promise;
+                delete window.cdc_adoQpoasnfa76pfcZLmcfl_Symbol;
+        '''
+        })
         self._driver.maximize_window()
     
     def __del__(self):
